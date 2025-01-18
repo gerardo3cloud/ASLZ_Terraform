@@ -18,5 +18,11 @@ variable "vnets" {
     location      = string
     rg            = string
     address_space = list(string)
+    subnets = optional(map(object({
+      delegation_enable  = optional(bool, false)
+      delegation_name    = optional(string, "")
+      delegation_actions = optional(list(string), [])
+      address_prefixes   = list(string)
+    })), {})
   }))
 }

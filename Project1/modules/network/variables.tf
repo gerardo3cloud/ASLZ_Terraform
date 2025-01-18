@@ -22,3 +22,14 @@ variable "tags" {
   description = "Default tags to apply to all resources."
   type        = map(any)
 }
+
+variable "subnets" {
+  description = "creates multiple subnets"
+  type = map(object({
+    address_prefixes = list(string)
+    delegation_enable = optional (bool, false)
+    delegation_name = optional (string, "")
+    delegation_actions = optional (list(string), [])
+  }))
+  default = {}
+  }

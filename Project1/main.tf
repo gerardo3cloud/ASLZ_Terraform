@@ -35,7 +35,9 @@ module "vnets" {
   tags     = var.tags
   name     = each.value.name
   location = each.value.location
-  #rg_name  = each.value.rg
-  rg_name  = module.rgs[each.key].name
+  rg_name  = each.value.rg
+  #rg_name  = module.rgs[each.key].id
   address_space = each.value.address_space
+  subnets       = each.value.subnets
+
 }

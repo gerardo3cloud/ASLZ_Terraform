@@ -14,7 +14,6 @@ rgs = {
     name     = "rg_spoke_gerry"
     location = "East US"
   }
-
   spoke2 = {
     name     = "rg_spoke2_gerry"
     location = "East US"
@@ -28,14 +27,24 @@ vnets = {
     rg            = "rg_hub_gerry"
     location      = "East US"
     address_space = ["10.1.0.0/24"]
-  }
 
+  }
 
   spoke = {
     name          = "vnet_spoke"
     rg            = "rg_spoke_gerry"
     location      = "East US"
     address_space = ["10.2.0.0/24"]
+  
+  subnets = {
+      snet-mysql = {
+        address_prefixes = ["10.2.0.0/29"]
+        delegation_enable = true
+        delegation_name = "Microsoft.DBforMySQL/flexibleServers"
+        delegation_action = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      }
+    }
+
   }
 
   spoke2 = {
@@ -46,3 +55,6 @@ vnets = {
   }
 
 }
+
+
+
