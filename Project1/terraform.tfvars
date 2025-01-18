@@ -28,6 +28,17 @@ vnets = {
     location      = "East US"
     address_space = ["10.1.0.0/24"]
 
+    subnets = {
+      azurefirewallsubnet = {
+        address_prefixes = ["10.1.0.0/29"]
+      },
+      jumphostsubnet = {
+        address_prefixes = ["10.1.0.8/29"]
+      },
+      gatewaysubnet = {
+        address_prefixes = ["10.1.0.16/29"]
+      }
+    }
   }
 
   spoke = {
@@ -35,16 +46,24 @@ vnets = {
     rg            = "rg_spoke_gerry"
     location      = "East US"
     address_space = ["10.2.0.0/24"]
-  
-  subnets = {
+
+    subnets = {
       snet-mysql = {
-        address_prefixes = ["10.2.0.0/29"]
+        address_prefixes  = ["10.2.0.0/29"]
         delegation_enable = true
-        delegation_name = "Microsoft.DBforMySQL/flexibleServers"
+        delegation_name   = "Microsoft.DBforMySQL/flexibleServers"
         delegation_action = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      },
+      keyvaultsubnet = {
+        address_prefixes = ["10.2.0.8/29"]
+      },
+      aksclustersubnet = {
+        address_prefixes = ["10.2.0.16/28"]
+      },
+      appgatewaysubnet = {
+        address_prefixes = ["10.2.0.32/28"]
       }
     }
-
   }
 
   spoke2 = {
