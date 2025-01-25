@@ -35,6 +35,9 @@ jobs:
 
       - name: change directory
         run: cd ${{ github.event.inputs.directory }}
+        
+      - name: list content
+        run: ls -al
 
       # Runs a single command using the runners shell
       - name: setup terraform
@@ -52,9 +55,15 @@ jobs:
 
       - name: terraform init
         run: terraform init
-
+      
+      - name: terraform fmt
+        run: terraform fmt
+        
       - name: terraform validate
         run: terraform validate .
+
+      - name: list content
+        run: ls -al
 
       - name: terraform plan
         run: terraform plan -out outputfile
