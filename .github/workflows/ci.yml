@@ -28,14 +28,16 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.event.inputs.directory }}
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: change directory
-        run: cd ${{ github.event.inputs.directory }}
-        
       - name: list content
         run: ls -al
 
@@ -58,7 +60,7 @@ jobs:
       
       - name: terraform fmt
         run: terraform fmt
-        
+
       - name: terraform validate
         run: terraform validate .
 
