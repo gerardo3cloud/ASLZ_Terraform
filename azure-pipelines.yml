@@ -43,8 +43,4 @@ stages:
           -var subscription_id=$(DEPLOYMENT_SUBSCRIPTION_ID) \
           -var tenant_id=$(DEPLOYMENT_TENANT_ID) -out=tfplan
           
-          terraform apply \
-          -var client_id=$(DEPLOYMENT_CLIENT_ID) \
-          -var client_secret=$(DEPLOYMENT_CLIENT_SECRET) \
-          -var subscription_id=$(DEPLOYMENT_SUBSCRIPTION_ID) \
-          -var tenant_id=$(DEPLOYMENT_TENANT_ID) -auto-approve tfplan
+          terraform apply -auto-approve tfplan
